@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+    /* latin */
+        @font-face {
+        font-family: 'Droid Serif';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Droid Serif'), local('DroidSerif'), url(fonts/DroidSerif.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+        /* latin-ext */
+        @font-face {
+          font-family: 'Yanone Kaffeesatz';
+          font-style: normal;
+          font-weight: 400;
+          src: local('Yanone Kaffeesatz Regular'), local('YanoneKaffeesatz-Regular'), url(fonts/YanoneKaffeesatz-Regular.woff2) format('woff2');
+          unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+        }
+        /* latin */
+        @font-face {
+          font-family: 'Yanone Kaffeesatz';
+          font-style: normal;
+          font-weight: 400;
+          src: local('Yanone Kaffeesatz Regular'), local('YanoneKaffeesatz-Regular'), url(fonts/YanoneKaffeesatz-Regular2.woff2) format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+        /* latin */
+        @font-face {
+          font-family: 'Ubuntu Mono';
+          font-style: normal;
+          font-weight: 400;
+          src: local('Ubuntu Mono'), local('UbuntuMono-Regular'), url(fonts/UbuntuMono400.woff2) format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+        /* latin */
+        @font-face {
+          font-family: 'Ubuntu Mono';
+          font-style: normal;
+          font-weight: 700;
+          src: local('Ubuntu Mono Bold'), local('UbuntuMono-Bold'), url(fonts/UbuntuMono-Bold700.woff2) format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+        /* latin */
+        @font-face {
+          font-family: 'Ubuntu Mono';
+          font-style: italic;
+          font-weight: 400;
+          src: local('Ubuntu Mono Italic'), local('UbuntuMono-Italic'), url(fonts/UbuntuMono-Italic.woff2) format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+
+        body {
+        font-family: 'Droid Serif';
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+
+      blockquote {
+        background-color: lightblue;
+        border-color: black;
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+    </style>
+    <meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: center, middle
+  <!-- Slideshow Markdown -->
+[nodejswtf]: img/nodejswtf.png
+[volto]: img/volto.png
+
+![node? js? wtf?][nodejswtf]
+
+### The sexy platform
+
+# Michele Nasti
+
+### Dev Day, 24/02/2015, ReWork (NA)
+
+---
+
+Chi Sono?
+=========
+
+- http://michelenasti.com
+
+- Twitter ([@micnasti](https://twitter.com/micnasti))
+
+- Linkedin (https://it.linkedin.com/in/michelenasti)
+
+- Facebook
+
+... e tutti gli altri on line (Stack Overflow, Github, ....)
+
+.right[<img width="20%" src="img/volto.png">]
+
+???
+
+- lavoro principalmente con Java e in ambito Enterprise, e ultimamente ho lavorato a un progetto con frontend Angular
+- Ho scoperto Javascript con GWT (!) e me ne sono innamorato
+- sono un Generalista quindi approfondisco tutto quello che mi può servire per lavoro
+- troverete queste slide sul mio sito
+
+---
+
+.left-column[
+    ## What is NodeJS?
+]
+.right-column[
+## linguaggio? libreria? framework? piattaforma? SaaS? PaaS?
+
+...Risposta: **Piattaforma**
+
+Estratto dalla home page:
+
+> Node.js® is a JavaScript runtime built on Chrome's **V8 JavaScript engine**. Node.js uses an
+**event-driven, non-blocking I/O model** that makes it lightweight and efficient.
+
+s'è capito no?
+
+- non è un webserver (tipo apache)
+
+- ...è un altro modo per eseguire codice sul computer
+
+]
+
+???
+
+creatore di Node non ha dato una definizione.
+
+è una Piattaforma: fornisce un linguaggio di programmazione, Javascript, che non permette di
+accedere a file, socket, etc. (tantomento agli oggetti nel browser: controllate le specifiche!)
+
+Oltre al linguaggio fornisce le librerie per accedere al sistema operativo.
+
+L'autore voleva provare a scrivere una piattaforma, o comunque un modello di programmazione, che non fosse
+il solito "request-based". Ha provato a scrivere qualcosa di simile con C++ e ne stava valutando la fattibilità.
+Quando Chrome ha reso disponibile il sorgente del suo motore JS, V8, si è trovato un linguaggio già pronto che
+rispecchiava il modello che aveva in mente.
+
+---
+
+Installazione
+========
+
+- https://nodejs.org/
+
+- Primo modo per eseguire Node:
+
+- ... command line: node (senza argomenti)
+
+- Esempio:
+
+```javascript
+    $ node
+    > console.log('Hello World');
+    Hello World
+    undefined
+```
+
+
+???
+
+
+nella REPL (read evaluate print loop) possiamo scrivere tutto, come se fosse la console di un browser.
+In particolare, quando scriviamo qualcosa, il metodo ci mostrerà sempre come ultima riga il "return" dell'ultima
+istruzione eseguita.
+console.log scrive in console, appunto, ma è un metodo che non ha return.
+
+
+---
+
+Svantaggi
+=========
+
+- è enterprise level? Il codice è strutturabile? (serve MOLTO testing)
+
+- non adatto a fare il sito web della salumeria di paese (ma se lo fate imparate tante cose)
+
+  - è invece adatto per realizzare app che devono gestire molti dati in tempo reale (dashboard, backend di videogames, ...)
+
+---
+
+.left-column[
+## What is NodeJS?
+
+Javascript Runtime
+]
+.right-column[
+## Chrome V8 Javascript Engine
+
+- quanti altri JS runtime esistono?
+
+- Ecma2015 (o ES6) con Node 4.0
+]
+
+???
+
+Esistono tanti runtime di JS: actionScript, Nashorn, Rhino, i browser ...
+
+Da poco è uscita la versione 4.0 di Node che viene fuori da un merge con un fork, io.js
+
+supporta tutte le feature di JS es6 (funzioni arrow, variabili let, modularizzazione...) e le precedenti
+
+---
+
+name: piccoladeviazione
+
+.left-column[
+## What is NodeJS?
+
+Javascript Runtime
+
+<img src="img/logo_JavaScript.png" width="100%">
+]
+.right-column[
+## Addentriamoci in JS !
+
+- il linguaggio più diffuso al mondo (gira su ogni browser)
+
+- è anacronistico disabilitare JS per motivi di sicurezza, e anche progettare siti senza JS
+
+- *"if something can be built in Javascript, it will eventually be built in Javascript"*
+
+- **JS non è più il giocattolo dei primi anni 2000. E' un linguaggio VERO e va studiato come tale**
+]
+
+???
+
+Anche l'Enterprise sta sperimentando JS, con Angular, nel frontend
+
+Ai miei tempi i prof dicevano di progettare siti che non richiedessero js
+
+Ultimamente con JS stanno scrivendo di tutto
+
+Tutto questo rende difficile studiare JS. Online si trova di tutto, ma è tutto disorganizzatissimo. 
+
+Con Node la conoscenza di JS potrà essere applicata sia su backend che su frontend!!
+
+---
+.left-column[
+## What is NodeJS?
+
+Javascript Runtime
+
+<img src="img/logo_JavaScript.png" width="100%">
+]
+.right-column[
+ ## Caratteristiche di JS
+
+ - Non è *pure-OOP*, ma **prototype-based**
+ 
+ - non è *pure-functional*, ma è un **ottimo linguaggio funzionale**
+ 
+ - _purtroppo_ è facile (e sbagliato) creare funzioni super-globali:
+  
+   - la *community* ha risolto queste problematiche e le soluzioni sono state applicate anche su browser e in ES6
+ 
+ - browser !== nodejs
+]
+
+???
+
+Js ha gli oggetti, ma non sono così importanti come lo sono in Java. Bisogna conoscerli
+
+Un linguaggio funzionale considera le funzioni come "first class object"
+
+JS è stato scritto in 10 giorni per il primo netscape, e nemmeno l'autore si immaginava tutto il successo che ha avuto. Dopo 30 anni è ancora Cool ! 
+
+Il browser usa JS per creare pagine dinamiche; non si deve pensare di usare node per gli stessi compiti. Non si usa JQuery su node
+
+---
+
+.left-column[
+## What is NodeJS?
+
+Javascript Runtime
+
+Event Based
+]
+.right-column[
+## Event-Based
+
+- architettura a eventi ripresa da quella delle interfacce grafiche
+
+- browser: "se click su div, fai questo"
+
+- nodejs: "se conessione in input, scrivi "HTTP 200"
+
+<img src="img/nginx-apache-reqs-sec.png" width="100%">
+]
+
+???
+
+architetture ad eventi viene  dalle interfacce grafiche 
+
+il server viene programmato come se dovesse rispondere ad eventi; quando avviene qualcosa,
+ è lui a richiamare la funzione adeguata. Nel frattempo potrà gestire altre richieste o fare altro. 
+
+Questo approccio, insieme alla programmazione funzionale, ha spinto il parallelismo a livelli mai visti! 
+
+Ma come fa un server con un solo thread ad essere parallelo? 
+
+chart su nginx vs apache : mostrare pure che la memoria di nginx non aumenta
+
+---
+
+.left-column[
+## What is NodeJS?
+
+Javascript Runtime
+
+Event Based
+
+Non-Blocking
+]
+.right-column[
+## Non Blocking Model 
+
+- tutto è asincrono...
+
+- ...e c'è un solo thread per JS
+
+<img src="img/eventloop.png" width="100%"> 
+
+]
+ 
+???
+
+Cosa vuol dire "single threaded"? tutto il codice js viene eseguito all'interno di un singolo thread. 
+
+le operazioni di IO, che sono quelle più lente, vengono delegate ad altri.  
+
+---
+
+name: helloworld
+
+.left-column[
+## Mani al codice!
+
+]
+
+.right-column[
+## Hello World
+
+```javascript
+console.log('Hello World!');
+```
+]
+
+---
+
+.left-column[
+## Echo Server con Node
+
+]
+
+.right-column[
+## Il nostro pappagallo-server
+
+```javascript
+//echoServer.js
+
+var http = require('http');
+
+http.createServer(function(request,response){
+    response.writeHead(200);
+    request.on('data',function(message){
+        response.write(message);
+    });
+ 
+    request.on('end',function(){
+        response.end();
+    });
+}).listen(8080);
+```
+
+lanciamo il server con ```node echoServer.js```
+
+testiamolo con 
+
+```curl -d 'ritorno al futuro!' http://localhost:8080```
+]
+
+???
+
+- 10 righe di codice, tanta roba! 
+
+- parlare degli eventi "data" e "end" 
+
+- modulo http (di node!) quello che avviene qui è asincrono 
+ 
+---
+
+class: center
+
+GRAZIE
+====== 
+
+## Facciamo un Javascript User Group ? 
+
+<img src="img/cat_event_loop.gif" width="70%">
+
+The node Events loop
+
+    </textarea>
+<script src="bower_components/remark/out/remark.js">
+</script>
+<script>
+    var slideshow = remark.create();
+</script>
+</body>
+</html>
